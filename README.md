@@ -37,6 +37,8 @@ A teacher-student pipeline for congestion-aware routing on a OneWeb-like LEO con
 | Path drop rate | 0% | 0% | ~6.95% |
 | Normalized throughput | 1.24× baseline | 1.66× baseline | 1.00× |
 
+> **What is normalized throughput?** A path that's fast but drops packets is not actually useful. Normalized throughput combines both into one number: `(1 − drop_rate) / end_to_end_delay`. Higher is better. A path with zero drops and low delay scores high; a path that's slightly faster but drops 7% of packets scores much lower. It's the metric that captures what you actually care about in a routing system — packets arriving, quickly.
+
 The agent recovers about 99.7% of the oracle's delay improvement over the baseline — using only local information.
 
 The honest part: under a stricter held-out time test (train on early snapshots, test on peak-hour snapshots the model never saw), offline classification accuracy drops from 0.81 to 0.41. The end-to-end routing performance stays usable, but this is a real limitation of static-snapshot training. Periodic retraining would be needed in any real deployment.
@@ -103,3 +105,4 @@ Python 3.10 · NetworkX · scikit-learn · NumPy · pandas
 ---
 
 *Part of MSc thesis work at University of Rome Tor Vergata, with Erasmus exchange at University of Göttingen. Supervisor: Prof. Ernestina Cianca.*
+
